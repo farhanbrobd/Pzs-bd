@@ -60,7 +60,7 @@
         <!-- TAB 1: Notice, Seats & Committee -->
         <section id="tab-notice" class="space-y-6">
             <div class="stylish-card p-6 bg-gradient-to-r from-emerald-800 to-teal-800 text-white">
-                <h2 class="text-xl md:text-2xl font-bold mb-2">শিক্ষাবর্ষ ২০২৬ - ভর্তি বিজ্ঞপ্তি (৩য়, ৬ষ্ঠ ও ৯ম শ্রেণি)</h2>
+                <h2 class="text-xl md:text-2xl font-bold mb-2">शिक्षাবর্ষ ২০২৬ - ভর্তি বিজ্ঞপ্তি (৩য়, ৬ষ্ঠ ও ৯ম শ্রেণি)</h2>
                 <p class="text-sm text-emerald-100">পানিপুর জেলা স্কুলে মেধা যাচাই পরীক্ষার মাধ্যমে শিক্ষার্থী ভর্তি করা হবে। অনলাইনে নির্ভুলভাবে আবেদন ফরম পূরণ করার অনুরোধ করা হলো।</p>
             </div>
 
@@ -600,7 +600,7 @@
                         <div class="text-center mb-4">
                             <img src="${student.photo || 'https://via.placeholder.com/100'}" class="w-24 h-24 mx-auto object-cover rounded-full border-2 border-emerald-800 mb-2">
                             <h2 class="text-xl font-bold text-emerald-900">${student.name}</h2>
-                            <p class="text-sm text-gray-600">রোল: <strong>${student.roll}</strong> | শ্রেণি: <strong>${student.targetClass}${student.group !== 'N/A' ? '('+student.group+')' : ''}</strong></p>
+                            <p class="text-sm text-gray-600">রোল: <strong>${student.roll}</strong> | শ্রেণি: <strong>${student.targetClass} ${student.group !== 'N/A' ? '('+student.group+')' : ''}</strong></p>
                         </div>
                         <div class="space-y-2 text-sm border-t pt-4">
                             <p><strong>জন্ম নিবন্ধন:</strong> ${student.birthRegNo}</p>
@@ -609,11 +609,11 @@
                             <p><strong>পিতার নাম:</strong> ${student.fatherName}</p>
                             <p><strong>পিতার এনআইডি:</strong> ${student.fatherNid}</p>
                             <p><strong>পিতার মোবাইল:</strong> ${student.fatherPhone}</p>
-                            <p><strong>মাতার নাম:</strong> ${student.motherName} (NID:${student.motherNid})</p>
+                            <p><strong>মাতার নাম:</strong> ${student.motherName} (NID: ${student.motherNid})</p>
                             <p><strong>কোটা:</strong> ${student.quota}</p>
                             <p><strong>বর্তমান ঠিকানা:</strong> ${student.presentAddress}</p>
                             <p><strong>পূর্ববর্তী স্কুল:</strong> ${student.prevSchool} (${student.prevResult})</p>
-                            <p><strong>পেমেন্ট:</strong> <span class="text-green-600 font-bold">${student.paymentStatus} (TrxID:${student.trxId || 'N/A'})</span></p>
+                            <p><strong>পেমেন্ট:</strong> <span class="text-green-600 font-bold">${student.paymentStatus} (TrxID: ${student.trxId || 'N/A'})</span></p>
                         </div>
                         <div class="mt-6 text-center"><button onclick="window.print()" class="bg-emerald-800 text-white px-4 py-2 rounded-xl text-sm">প্রিন্ট করুন</button></div>
                     </div>
@@ -695,5 +695,105 @@
         function renderAdminCommittee() {
             document.getElementById('admin-committee-list').innerHTML = committeeList.map((c, i) => `
                 <div class="flex justify-between items-center p-2 bg-gray-50 border rounded-xl">
-                    <span><strong>${c.name}</strong> (${c.designation}) -${c.phone}</span>
-                    <button onclick="committeeList.splice(${
+                    <span><strong>${c.name}</strong> (${c.designation}) - ${c.phone}</span>
+                    <button onclick="committeeList.splice(${i},1);localStorage.setItem('panipur_committee',JSON.stringify(committeeList));renderAdminCommittee();renderCommittee();" class="text-red-600 font-bold">মুছুন</button>
+                </div>
+            `).join('');
+        }
+
+        function changeAdminCredentials(e) {
+            e.preventDefault();
+            adminAuth.user = document.getElementById('newAdminUser').value;
+            adminAuth.pass = document.getElementById('newAdminPass').value;
+            localStorage.setItem('panipur_admin', JSON.stringify(adminAuth));
+            alert('সিকিউরিটি আপডেট হয়েছে!');
+        }
+
+        function uploadFile(e, key) {
+            const file = e.target.files[0];
+            if(file) {
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    localStorage.setItem(key, evt.target.result);
+                    loadBranding(); alert('আপলোড হয়েছে!');
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function loadBranding() {
+            const logo = localStorage.getItem('panipur_logo');
+            if(logo) {
+                document.getElementById('site-logo').src = logo;
+                document.getElementById('site-logo').classList.remove('hidden');
+                document.getElementById('site-logo-icon').classList.add('hidden');
+                document.getElementById('admit-logo').src = logo;
+                document.getElementById('admit-logo').classList.remove('hidden');
+            }
+            const sig = localStorage.getItem('panipur_signature');
+            if(sig) {
+                document.getElementById('admit-headmaster-sig').src = sig;
+                document.getElementById('admit-headmaster-sig').classList.remove('hidden');
+            }
+        }
+
+        function loadAdminData() {
+            document.getElementById('stat-total').innerText = applicants.length;
+            document.getElementById('stat-3').innerText = applicants.filter(a => a.targetClass === '৩য়').length;
+            document.getElementById('stat-69').innerText = applicants.filter(a => a.targetClass !== '৩য়').length;
+            
+            document.getElementById('cfg-3').value = examConfigs['৩য়'];
+            document.getElementById('cfg-6').value = examConfigs['৬ষ্ঠ'];
+            document.getElementById('cfg-9').value = examConfigs['৯ম'];
+            renderAdminCommittee();
+            filterApplicants();
+        }
+
+        function filterApplicants() {
+            const selectedClass = document.getElementById('filter-class').value;
+            const selectedGroup = document.getElementById('filter-group').value;
+
+            let filtered = applicants;
+
+            if(selectedClass !== 'All') {
+                filtered = filtered.filter(a => a.targetClass === selectedClass);
+            }
+
+            if(selectedGroup !== 'All') {
+                filtered = filtered.filter(a => a.targetClass === '৯ম' && a.group === selectedGroup);
+            }
+
+            document.getElementById('applicant-table-body').innerHTML = filtered.map((a) => {
+                const originalIndex = applicants.findIndex(item => item.roll === a.roll);
+                return `
+                <tr class="border-b">
+                    <td class="p-2 border font-bold">${a.roll}</td>
+                    <td class="p-2 border">${a.name}</td>
+                    <td class="p-2 border">${a.targetClass} ${a.group !== 'N/A' ? '('+a.group+')' : ''}</td>
+                    <td class="p-2 border">${a.fatherName} <br><span class="text-gray-500 text-[10px]">NID: ${a.fatherNid}</span></td>
+                    <td class="p-2 border">${a.fatherPhone}</td>
+                    <td class="p-2 border font-bold ${a.paymentStatus === 'Paid' ? 'text-green-600' : 'text-orange-500'}">${a.paymentStatus}</td>
+                    <td class="p-2 border">
+                        <button onclick="viewStudentDetails(${originalIndex})" class="bg-blue-600 text-white px-2 py-1 rounded-lg text-xs">বিস্তারিত</button>
+                    </td>
+                </tr>
+            `}).join('');
+        }
+
+        function exportToExcel() {
+            if(applicants.length === 0) { alert('কোনো ডাটা নেই!'); return; }
+            let csv = "\uFEFFরোল,নাম,শ্রেণি,বিভাগ,জন্ম নিবন্ধন,পিতার নাম,পিতার এনআইডি,মোবাইল,কোটা,পেমেন্ট স্ট্যাটাস\n";
+            applicants.forEach(a => { 
+                csv += `"${a.roll}","${a.name}","${a.targetClass}","${a.group}","${a.birthRegNo}","${a.fatherName}","${a.fatherNid}","${a.fatherPhone}","${a.quota}","${a.paymentStatus}"\n`; 
+            });
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.setAttribute("download", "Full_Admission_Applicants_Report.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+</html>
