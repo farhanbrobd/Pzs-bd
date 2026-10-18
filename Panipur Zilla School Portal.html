@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>পানিপুর জেলা স্কুল - অনলাইন ভর্তি পোর্টাল ২০২৬</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            600: '#16a34a',
+                            800: '#166534',
+                            900: '#065f46',
+                            950: '#022c22'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Font Inter / Noto Sans Bengali -->
+    <link href="https://fonts.googleapis.com/css2?family=Kalpurush&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans Bengali', 'Kalpurush', sans-serif;
+            background-color: #f4f7f6;
+        }
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #printable-area, #printable-area * {
+                visibility: visible;
+            }
+            #printable-area {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+            }
+            .no-print {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="text-gray-800 flex flex-col min-h-screen">
+
+    <!-- Header Section -->
+    <header class="bg-brand-900 text-white shadow-md border-b-4 border-yellow-500">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-3 text-center sm:text-left">
+                    <img id="site-logo" src="https://via.placeholder.com/80/065f46/ffffff?text=PZS" alt="Logo" class="w-16 h-16 rounded-full bg-white p-1 border border-yellow-400">
+                    <div>
+                        <h1 class="text-2xl sm:text-3xl font-bold tracking-wide">পানিপুর জেলা স্কুল</h1>
+                        <p class="text-xs sm:text-sm text-yellow-300 font-medium">একটি ঐতিহ্যবাহী মনতেশ্বরী শিক্ষা প্রতিষ্ঠান</p>
+                        <p class="text-xs text-emerald-100"><i class="fa-solid fa-location-dot"></i> হাটকালুপাড়া মহাসড়ক, পানিপুর | হেল্পলাইন: ০১৭০০-০০০০০</p>
+                    </div>
+                </div>
+                <!-- Top Quick Navigation -->
+                <nav class="flex flex-wrap justify-center gap-2 no-print">
+                    <button onclick="switchTab('notice')" class="nav-btn px-3 py-1.5 rounded-md text-xs sm:text-sm font-semibold bg-emerald-800 hover:bg-emerald-700 transition"><i class="fa-solid fa-bullhorn mr-1"></i> নোটিশ ও আসন</button>
+                    <button onclick="switchTab('apply')" class="nav-btn px-3 py-1.5 rounded-md text-xs sm:text-sm font-semibold bg-emerald-800 hover:bg-emerald-700 transition"><i class="fa-solid fa-pen-to-square mr-1"></i> ভর্তি আবেদন</button>
+                    <button onclick="switchTab('payment')" class="nav-btn px-3 py-1.5 rounded-md text-xs sm:text-sm font-semibold bg-emerald-800 hover:bg-emerald-700 transition"><i class="fa-solid fa-wallet mr-1"></i> পেমেন্ট গেটওয়ে</button>
+                    <button onclick="switchTab('admit')" class="nav-btn px-3 py-1.5 rounded-md text-xs sm:text-sm font-semibold bg-emerald-800 hover:bg-emerald-700 transition"><i class="fa-solid fa-id-card mr-1"></i> এডমিট কার্ড</button>
+                    <button onclick="switchTab('admin')" class="nav-btn px-3 py-1.5 rounded-md text-xs sm:text-sm font-semibold bg-yellow-600 hover:bg-yellow-500 text-gray-900 transition"><i class="fa-solid fa-user-shield mr-1"></i> এডমিন প্যানেল</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Alert / Toast Modal -->
+    <div id="toast" class="hidden fixed bottom-5 right-5 z-50 bg-gray-900 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center gap-3 border border-emerald-500">
+        <i id="toast-icon" class="fa-solid fa-circle-info text-yellow-400 text-xl"></i>
+        <span id="toast-msg" class="text-sm">বার্তা</span>
+        <button onclick="closeToast()" class="text-gray-400 hover:text-white ml-3"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <!-- Main Body Container -->
+    <main class="container mx-auto px-4 py-6 flex-grow">
+
+        <!-- SECTION 1: Notice & Seat Info -->
+        <section id="tab-notice" class="tab-content space-y-6">
+            <div class="bg-emerald-900 text-white p-6 rounded-2xl shadow-lg relative overflow-hidden">
+                <div class="relative z-10">
+                    <span class="bg-yellow-500 text-gray-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">শিক্ষা বর্ষ ২০২৬</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold mt-2">ভর্তি বিজ্ঞপ্তি (৩য়, ৬ষ্ঠ ও ৯ম শ্রেণি)</h2>
+                    <p class="mt-2 text-emerald-100 text-sm sm:text-base leading-relaxed">
+                        পানিপুর জেলা স্কুলে মেধা যাচাই পরীক্ষার মাধ্যমে শিক্ষাবর্ষ ২০২৬ এর জন্য শিক্ষার্থী ভর্তি করা হবে। অনলাইনে নির্ভুলভাবে আবেদন ফরম পূরণ করার অনুরোধ করা হলো।
+                    </p>
+                    <div class="mt-4 flex flex-wrap gap-3">
+                        <button onclick="switchTab('apply')" class="bg-yellow-500 hover:bg-yellow-400 text-gray-900 font-bold px-5 py-2.5 rounded-xl text-sm transition shadow-md flex items-center gap-2">
+                            অনলাইন আবেদন ফরম পূরণে এগিয়ে যান <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seat and Schedule Info -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                    <h3 class="text-lg font-bold text-brand-900 border-b pb-2 mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-chair text-emerald-600"></i> শ্রেণিভিত্তিক আসন সংখ্যা ও পরীক্ষার সময়সূচি
+                    </h3>
+                    <div id="notice-configs-display" class="space-y-3">
+                        <!-- Dynamic Seat Data Loaded Here -->
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+                    <h3 class="text-lg font-bold text-brand-900 border-b pb-2 mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-users text-emerald-600"></i> ভর্তি কমিটি পরিচিতি
+                    </h3>
+                    <div id="committee-cards-display" class="grid grid-cols-1 gap-3">
+                        <!-- Dynamic Committee Data Loaded Here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: Admission Form -->
+        <section id="tab-apply" class="tab-content hidden">
+            <div class="max-w-4xl mx-auto bg-white p-6 sm:p-8 rounded-2xl shadow-md border border-gray-200">
+                <div class="border-b pb-4 mb-6 text-center">
+                    <h2 class="text-2xl font-bold text-brand-900">অনলাইন ভর্তি আবেদন ফরম - ২০২৬</h2>
+                    <p class="text-xs text-gray-500 mt-1">সবগুলো ক্ষেত্র সঠিকভাবে পূরণ করুন (* চিহ্নিত ঘর আবশ্যক)</p>
+                </div>
+
+                <form id="admission-form" onsubmit="handleAdmissionSubmit(event)" class="space-y-6">
+                    <!-- Academic Target -->
+                    <div class="bg-emerald-50/50 p-4 rounded-xl border border-emerald-100">
+                        <h4 class="font-bold text-emerald-900 text-sm mb-3">আবেদনকৃত শ্রেণি ও বিভাগ</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-700 mb-1">আকাঙ্ক্ষিত শ্রেণি *</label>
+                                <select id="targetClass" required onchange="toggleGroupSelection()" class="w-full p-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-emerald-600">
+                                    <option value="">শ্রেণি নির্বাচন করুন</option>
+                                    <option value="৩য়">৩য় শ্রেণি</option>
+                                    <option value="৬ষ্ঠ">৬ষ্ঠ শ্রেণি</option>
+                                    <option value="৯ম">৯ম শ্রেণি</option>
+                                </select>
+                            </div>
+                            <div id="group-container" class="hidden">
+                                <label class="block text-xs font-semibold text-gray-700 mb-1">বিভাগ (শুধুমাত্র ৯ম শ্রেণির জন্য) *</label>
+                                <select id="studentGroup" class="w-full p-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-emerald-600">
+                                    <option value="N/A">বিভাগ নির্বাচন করুন</option>
+                                    <option value="বিজ্ঞান">বিজ্ঞান</option>
+                                    <option value="মানবিক">মানবিক</option>
+                                    <option value="ব্যবসায় শিক্ষা">ব্যবসায় শিক্ষা</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Personal Information -->
+                    <div>
+                        <h4 class="font-bold text-brand-900 border-b text-sm pb-1 mb-3">শিক্ষার্থীর ব্যক্তিগত তথ্য</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-700 mb-1">শিক্ষার্থীর পূর্ণ নাম (বাংলায়) *</label>
+                                <input type="text" id="studentName" required class="w-full p-2.5 border rounded-lg text-sm" placeholder="যেমন: আব্দুল্লাহ আল মামুন">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-700 mb-1">১৭ ডিজিটের জন্ম নিবন্ধন নম্বর *</label>
+                                <input type="text" id="birthRegNo" maxlength="17" required pattern="[0-9]{17}" class="w-full p-2.5 border rounded-lg text-sm" placeholder="১৭ ডিজিট সংখ্যা">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-700 mb-1">জন্ম তারিখ *</label>
+                                <input type="date" id="dob" required class="w-full p-2.5 border rounded-lg text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-700 mb-1">লিঙ্গ *</label>
+                                <select id="gender" required class="w-full p-2.5 border rounded-lg text-sm">
+                                    <option value="ছাত্র">ছাত্র</option>
+                                    <option value="ছাত্রী">ছাত্রী</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-700 mb-1">ধর্ম *</label>
+                                <select id="religion" required class="w-full p-2.5 border rounded-lg text-sm">
+                                    <option value="ইসলাম">ইসলাম</option>
+                                    <option value="হিন্দু">হিন্দু</option>
+                                    <option value="বৌদ্ধ">বৌদ্ধ</option>
+                                    <option value="খ্রিস্টান">খ্রিস্টান</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-700 mb-1">রক্তের গ্রুপ</label>
+                                <select id="bloodGroup" class="w-full p-2.5 border rounded-lg text-sm">
+                                    <option value="অজানা">অজানা</option>
+                                    <option value="A+">A+</option>
+                                    <option value="A-">A-</option>
+                                    <option value="B+">B+</option>
+                                    <option value="B-">B-</option>
+                                    <option value="O+">O+</option>
+                                    <option value="O-">O-</option>
+                                    <option value="AB+">AB+</option>
+                                    <option value="AB-">AB-</option>
+                                </select>
+                            </div>
+                            <div class="sm:col-span-2">
+                                <label class="block text-xs font-semibold text-gray-700 mb-1">শিক্ষার্থীর ছবি আপলোড (Passport Size)</label>
+                                <input type="file" id="photoInput" accept="image/*" class="w-full text-xs text-gray-500 border rounded-lg p-2">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Parents Information -->
+                    <div>
+                        <h4 class="font-bold text-brand-900 border-b text-sm pb-1 mb-3">পিতা ও মাতার তথ্য</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-700 mb-1">পিতার নাম *</label>
+                                <input type="text" id="fatherName" required class="w-full p-2.5 border rounded-lg text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-700 mb-1">পিতার মোবাইল নম্বর (১১ ডিজিট) *</label>
+                                <input type="tel" id="fatherPhone" maxlength="11" required pattern="[0-9]{11}" class="w-full p-2.5 border rounded-lg text-sm" placeholder="01700000000">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-700 mb-1">পিতার এনআইডি (NID) নম্বর</label>
+                                <input type="text" id="fatherNid" class="w-full p-2.5 border rounded-lg text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-700 mb-1">পিতার পেশা</label>
+                                <input type="text" id="fatherOcc" class="w-full p-2.5 border rounded-lg text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-700 mb-1">মাতার নাম *</label>
+                                <input type="text" id="motherName" required class="w-full p-2.5 border rounded-lg text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-700 mb-1">মাতার এনআইডি (NID) নম্বর</label>
+                                <input type="text" id="motherNid" class="w-full p-2.5 border rounded-lg text-sm">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quota & Academic Details -->
+                    <div>
+                        <h4 class="font-bold text-brand-900 border-b text-sm pb-1 mb-3">বিশেষ কোটা ও পূর্ববর্তী তথ্য</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-700 mb-1">বিশেষ কোটা (যদি থাকে)</label>
+                                <select id="quota" class="w-full p-2.5 border rounded-lg text-sm">
+                                    <option value="সাধারণ">সাধারণ (কোনো কোটা নেই)</option>
+                                    <option value="মুক্তিযোদ্ধা কোটা">মুক্তিযোদ্ধা কোটা</option>
+                                    <option value="প্রতিবন্ধী কোটা">প্রতিবন্ধী কোটা</option>
+                                    <option value="ভাই-বোন কোটা">ভাই-বোন কোটা</option>
+                                    <option value="সরকারি প্রাথমিক বিদ্যালয় কোটা">সরকারি প্রাথমিক বিদ্যালয় কোটা</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-700 mb-1">পূর্ববর্তী স্কুলের নাম</label>
+                                <input type="text" id="prevSchool" class="w-full p-2.5 border rounded-lg text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-700 mb-1">পূর্ববর্তী পরীক্ষার ফলাফল (GPA/মেধা স্থান)</label>
+                                <input type="text" id="prevResult" class="w-full p-2.5 border rounded-lg text-sm" placeholder="যেমন: 5.00 / ১ম">
+                            </div>
+                            <div class="sm:col-span-2">
+                                <label class="block text-xs font-semibold text-gray-700 mb-1">বর্তমান ঠিকানা *</label>
+                                <textarea id="presentAddress" required rows="2" class="w-full p-2.5 border rounded-lg text-sm" placeholder="গ্রাম/মহল্লা, ডাকঘর, উপজেলা, জেলা"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t flex justify-end">
+                        <button type="submit" class="bg-brand-900 hover:bg-brand-800 text-white font-bold px-8 py-3 rounded-xl shadow-lg transition">
+                            আবেদন সাবমিট ও ফি প্রদান করুন <i class="fa-solid fa-paper-plane ml-1"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- SECTION 3: E-Payment Gateway Simulation -->
+        <section id="tab-payment" class="tab-content hidden">
+            <div class="max-w-xl mx-auto bg-white p-6 sm:p-8 rounded-2xl shadow-md border border-gray-200 text-center">
+                <i class="fa-solid fa-receipt text-4xl text-emerald-600 mb-3"></i>
+                <h2 class="text-2xl font-bold text-gray-800">অনলাইন আবেদন ফি পেমেন্ট</h2>
+                <p class="text-xs text-gray-500 mb-6">আবেদন ফি: ২৫০/- টাকা মাত্র</p>
+
+                <div class="bg-emerald-50 p-4 rounded-xl mb-6 text-left border border-emerald-200">
+                    <p class="text-xs text-emerald-900 font-semibold mb-2">পেমেন্ট করার নিয়মাবলী:</p>
+                    <ol class="text-xs text-emerald-800 space-y-1 list-decimal list-inside">
+                        <li>বিকাশ / নগদ অ্যাপ থেকে Send Money / Make Payment করুন: <strong class="text-emerald-950">01700000000</strong></li>
+                        <li>পরিমাণ প্রদান করুন: <strong>২৫০ টাকা</strong></li>
+                        <li>প্রাপ্ত TrxID টি নিচের বক্সে লিখে নিশ্চিত করুন।</li>
+                    </ol>
+                </div>
+
+                <form onsubmit="handlePaymentSubmit(event)" class="space-y-4">
+                    <div class="text-left">
+                        <label class="block text-xs font-semibold text-gray-700 mb-1">আবেদনকারীর নাম / রোল / মোবাইল</label>
+                        <input type="text" id="paySearchKey" required class="w-full p-2.5 border rounded-lg text-sm" placeholder="পিতার মোবাইল নম্বর বা জন্ম নিবন্ধন">
+                    </div>
+                    <div class="text-left">
+                        <label class="block text-xs font-semibold text-gray-700 mb-1">পেমেন্ট মেথড</label>
+                        <div class="flex gap-4">
+                            <label class="flex items-center gap-2 border p-2.5 rounded-lg flex-1 cursor-pointer hover:bg-gray-50">
+                                <input type="radio" name="payMethod" value="bkash" checked> <span class="text-sm font-bold text-pink-600">bKash</span>
+                            </label>
+                            <label class="flex items-center gap-2 border p-2.5 rounded-lg flex-1 cursor-pointer hover:bg-gray-50">
+                                <input type="radio" name="payMethod" value="nagad"> <span class="text-sm font-bold text-orange-600">Nagad</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="text-left">
+                        <label class="block text-xs font-semibold text-gray-700 mb-1">Transaction ID (TrxID) *</label>
+                        <input type="text" id="payTrxId" required class="w-full p-2.5 border rounded-lg text-sm uppercase" placeholder="যেমন: 8N7A6D5C">
+                    </div>
+                    <button type="submit" class="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-bold py-3 rounded-xl shadow transition">
+                        পেমেন্ট যাচাই ও নিশ্চিত করুন
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- SECTION 4: Admit Card Search & Print -->
+        <section id="tab-admit" class="tab-content hidden space-y-6">
+            <div class="max-w-md mx-auto bg-white p-6 rounded-2xl shadow-md border border-gray-200 no-print">
+                <h3 class="text-lg font-bold text-center text-brand-900 mb-4">প্রবেশপত্র / এডমিট কার্ড ডাউনলোড</h3>
+                <form onsubmit="searchAdmitCard(event)" class="space-y-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-700 mb-1">রোল নম্বর অথবা পিতার মোবাইল নম্বর</label>
+                        <input type="text" id="admitQuery" required class="w-full p-2.5 border rounded-lg text-sm" placeholder="যেমন: 20261001 বা 017xxxxxxxx">
+                    </div>
+                    <button type="submit" class="w-full bg-brand-900 hover:bg-brand-800 text-white font-bold py-2.5 rounded-lg text-sm transition">
+                        এডমিট কার্ড খুঁজুন
+                    </button>
+                </form>
+            </div>
+
+            <!-- Admit Card Printable Card Container -->
+            <div id="admit-card-result" class="hidden max-w-2xl mx-auto bg-white p-8 rounded-2xl border-2 border-emerald-800 shadow-xl relative" id="printable-area">
+                <!-- Watermark background -->
+                <div class="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
+                    <img id="admit-bg-logo" src="https://via.placeholder.com/200/065f46/ffffff?text=PZS" class="w-72">
+                </div>
+
+                <div class="relative z-10">
+                    <div class="flex items-center justify-between border-b-2 border-emerald-900 pb-4 mb-4">
+                        <img id="admit-logo" src="https://via.placeholder.com/70/065f46/ffffff?text=PZS" class="w-16 h-16 rounded-full border">
+                        <div class="text-center">
+                            <h2 class="text-2xl font-bold text-emerald-900">পানিপুর জেলা স্কুল</h2>
+                            <p class="text-xs font-semibold text-gray-600">একটি ঐতিহ্যবাহী মনতেশ্বরী শিক্ষা প্রতিষ্ঠান</p>
+                            <p class="text-xs text-gray-500">ভর্তি পরীক্ষা ২০২৬ - প্রবেশপত্র (Admit Card)</p>
+                        </div>
+                        <div class="w-16 text-right">
+                            <span class="inline-block text-[10px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded border border-emerald-300 font-bold">অফিসিয়াল</span>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Admit Card Content Area -->
+                    <div id="admit-card-body" class="space-y-4">
+                        <!-- Loaded Javascript Template Dynamic Content Here safely -->
+                    </div>
+
+                    <!-- Signature & Footer -->
+                    <div class="mt-8 pt-4 border-t flex justify-between items-end">
+                        <div class="text-left text-xs text-gray-500">
+                            <p>ইস্যুর তারিখ: ২০২৬-০১-১৫</p>
+                            <p class="italic">পোর্টাল থেকে সওয়াসংগৃহীত</p>
+                        </div>
+                        <div class="text-center">
+                            <img id="admit-headmaster-sig" src="https://via.placeholder.com/120x40/ffffff/000000?text=Signature" alt="Signature" class="h-10 mx-auto object-contain border-b border-gray-400">
+                            <p class="text-xs font-bold text-gray-800 mt-1">প্রধান শিক্ষক</p>
+                            <p class="text-[10px] text-gray-500">পানিপুর জেলা স্কুল</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 text-center no-print">
+                        <button onclick="window.print()" class="bg-emerald-700 hover:bg-emerald-800 text-white font-bold px-6 py-2 rounded-xl text-sm shadow">
+                            <i class="fa-solid fa-print mr-1"></i> এডমিট কার্ড প্রিন্ট করুন
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: Admin Panel Section -->
+        <section id="tab-admin" class="tab-content hidden">
+            <!-- Login Form -->
+            <div id="admin-login-box" class="max-w-sm mx-auto bg-white p-6 rounded-2xl shadow-md border border-gray-200">
+                <div class="text-center mb-4">
+                    <i class="fa-solid fa-lock text-3xl text-yellow-600 mb-2"></i>
+                    <h3 class="text-lg font-bold text-gray-800">এডমিন প্যানেল লগইন</h3>
+                </div>
+                <form onsubmit="handleAdminLogin(event)" class="space-y-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-700 mb-1">ইউজার আইডেন্টিটি</label>
+                        <input type="text" id="adminUser" required class="w-full p-2.5 border rounded-lg text-sm" value="admin">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-700 mb-1">পাসওয়ার্ড</label>
+                        <input type="password" id="adminPass" required class="w-full p-2.5 border rounded-lg text-sm" value="panipur2026">
+                    </div>
+                    <button type="submit" class="w-full bg-brand-900 hover:bg-brand-800 text-white font-bold py-2.5 rounded-lg text-sm transition">
+                        লগইন করুন
+                    </button>
+                    <div class="text-right">
+                        <button type="button" onclick="toggleForgotBox()" class="text-xs text-emerald-700 hover:underline">পাসওয়ার্ড পুনরুদ্ধার?</button>
+                    </div>
+                </form>
+
+                <!-- Password Recovery Sub Box -->
+                <div id="forgot-password-box" class="hidden mt-4 pt-3 border-t text-xs">
+                    <p class="text-gray-600 mb-2">সিক্রেট পিন টাইপ করুন (ডিফল্ট: panipur2026):</p>
+                    <div class="flex gap-2">
+                        <input type="password" id="recovery-input" class="p-2 border rounded w-full text-xs" placeholder="Secret PIN">
+                        <button onclick="recoverPassword()" class="bg-gray-800 text-white px-3 py-1 rounded font-semibold">রিসেট</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Contents (Hidden by default) -->
+            <div id="admin-dashboard" class="hidden space-y-6">
+                <!-- Top Nav / Action Bar -->
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 flex flex-wrap justify-between items-center gap-4">
+                    <div class="flex items-center gap-2">
+                        <span class="w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></span>
+                        <h3 class="font-bold text-gray-800">এডমিন ড্যাশবোর্ড</h3>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <button onclick="exportToExcel()" class="bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold px-3 py-2 rounded-lg transition flex items-center gap-1">
+                            <i class="fa-solid fa-file-excel"></i> এক্সপোর্ট (CSV)
+                        </button>
+                        <button onclick="adminLogout()" class="bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-3 py-2 rounded-lg transition">
+                            <i class="fa-solid fa-right-from-bracket"></i> লগআউট
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Stats Summary Row -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    <div class="bg-emerald-800 text-white p-4 rounded-xl shadow-sm">
+                        <p class="text-xs text-emerald-200">মোট আবেদনকারী</p>
+                        <h4 id="stat-total" class="text-2xl font-black mt-1">০</h4>
+                    </div>
+                    <div class="bg-blue-800 text-white p-4 rounded-xl shadow-sm">
+                        <p class="text-xs text-blue-200">৩য় শ্রেণি</p>
+                        <h4 id="stat-3" class="text-2xl font-black mt-1">০</h4>
+                    </div>
+                    <div class="bg-purple-800 text-white p-4 rounded-xl shadow-sm">
+                        <p class="text-xs text-purple-200">৬ষ্ঠ শ্রেণি</p>
+                        <h4 id="stat-6" class="text-2xl font-black mt-1">০</h4>
+                    </div>
+                    <div class="bg-amber-800 text-white p-4 rounded-xl shadow-sm">
+                        <p class="text-xs text-amber-200">৯ম শ্রেণি</p>
+                        <h4 id="stat-9" class="text-2xl font-black mt-1">০</h4>
+                    </div>
+                </div>
+
+                <!-- Applicant Table & Filtering Section -->
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200">
+                    <div class="flex flex-col sm:flex-row justify-between items-center gap-3 mb-4">
+                        <h4 class="font-bold text-gray-800 text-sm">আবেদনকারীদের তালিকা</h4>
+                        <div class="flex flex-wrap gap-2 w-full sm:w-auto">
+                            <!-- Class Filter -->
+                            <select id="filter-class" onchange="filterApplicants()" class="p-2 border rounded-lg text-xs bg-gray-50">
+                                <option value="All">সকল শ্রেণি</option>
+                                <option value="৩য়">৩য় শ্রেণি</option>
+                                <option value="৬ষ্ঠ">৬ষ্ঠ শ্রেণি</option>
+                                <option value="৯ম">৯ম শ্রেণি</option>
+                            </select>
+                            <!-- Group Filter (Class 9) -->
+                            <select id="filter-group" onchange="filterApplicants()" class="p-2 border rounded-lg text-xs bg-gray-50">
+                                <option value="All">সকল বিভাগ (৯ম)</option>
+                                <option value="বিজ্ঞান">বিজ্ঞান</option>
+                                <option value="মানবিক">মানবিক</option>
+                                <option value="ব্যবসায় শিক্ষা">ব্যবসায় শিক্ষা</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Responsive Table -->
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs border-collapse">
+                            <thead>
+                                <tr class="bg-gray-100 text-gray-700 uppercase border-b">
+                                    <th class="p-3">রোল</th>
+                                    <th class="p-3">নাম</th>
+                                    <th class="p-3">শ্রেণি (বিভাগ)</th>
+                                    <th class="p-3">অভিভাবকের তথ্য</th>
+                                    <th class="p-3">পেমেন্ট স্ট্যাটাস</th>
+                                    <th class="p-3 text-center">অ্যাকশন</th>
+                                </tr>
+                            </thead>
+                            <tbody id="applicant-table-body" class="divide-y">
+                                <!-- Dynamic Applicants Rows Loaded Here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Dynamic Configs & Settings Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- Config 1: Seats & Exams Schedule -->
+                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200">
+                        <h4 class="font-bold text-gray-800 text-sm border-b pb-2 mb-3">আসন ও পরীক্ষার নোটিশ কনফিগারেশন</h4>
+                        <form onsubmit="saveConfigs(event)" class="space-y-3">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-600 mb-1">৩য় শ্রেণি তথ্য</label>
+                                <input type="text" id="cfg-3" class="w-full p-2 border rounded text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-600 mb-1">৬ষ্ঠ শ্রেণি তথ্য</label>
+                                <input type="text" id="cfg-6" class="w-full p-2 border rounded text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-600 mb-1">৯ম শ্রেণি তথ্য</label>
+                                <input type="text" id="cfg-9" class="w-full p-2 border rounded text-xs">
+                            </div>
+                            <button type="submit" class="bg-emerald-800 text-white px-4 py-2 rounded text-xs font-bold hover:bg-emerald-700">কনফিগারেশন আপডেট করুন</button>
+                        </form>
+                    </div>
+
+                    <!-- Config 2: Committee Management -->
+                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200">
+                        <h4 class="font-bold text-gray-800 text-sm border-b pb-2 mb-3">কমিটি সদস্য ব্যবস্থাপনা</h4>
+                        <form onsubmit="addCommitteeMember(event)" class="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-4">
+                            <input type="text" id="cm-name" placeholder="নাম" required class="p-2 border rounded text-xs">
+                            <input type="text" id="cm-designation" placeholder="পদবি" required class="p-2 border rounded text-xs">
+                            <input type="text" id="cm-phone" placeholder="ফোন" required class="p-2 border rounded text-xs">
+                            <button type="submit" class="sm:col-span-3 bg-yellow-600 text-gray-900 font-bold p-2 rounded text-xs hover:bg-yellow-500">নতুন সদস্য যোগ করুন</button>
+                        </form>
+                        <div id="admin-committee-list" class="space-y-2 max-h-40 overflow-y-auto">
+                            <!-- Dynamic Committee List -->
+                        </div>
+                    </div>
+
+                    <!-- Config 3: Dynamic Branding Uploads -->
+                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-200 lg:col-span-2">
+                        <h4 class="font-bold text-gray-800 text-sm border-b pb-2 mb-3">ব্র্যান্ডিং ও স্বাক্ষর আপডেট</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-600 mb-1">স্কুল লোগো আপলোড</label>
+                                <input type="file" onchange="uploadFile(event, 'panipur_logo')" accept="image/*" class="w-full text-xs p-1 border rounded">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-600 mb-1">প্রধান শিক্ষকের স্বাক্ষর আপলোড</label>
+                                <input type="file" onchange="uploadFile(event, 'panipur_signature')" accept="image/*" class="w-full text-xs p-1 border rounded">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Student Detail Viewing Modal -->
+    <div id="student-modal" class="hidden fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-lg rounded-2xl p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeStudentModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div id="modal-content-area" class="space-y-3 text-xs">
+                <!-- Dynamically Populated Modal Details -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-brand-950 text-white text-center py-4 border-t border-emerald-800 text-xs mt-auto no-print">
+        <p>© ২০২৬ পানিপুর জেলা স্কুল | মনতেশ্বরী শিক্ষা প্রতিষ্ঠান | সর্বস্বত্ব সংরক্ষিত</p>
+    </footer>
+
+    <!-- STRICT JAVASCRIPT CODE - ENCLOSED SAFELY IN SCRIPT TAGS -->
+    <script>
+        // Global Initial Mock Data State
+        let applicants = [
+            {
+                roll: "20261001",
+                name: "মোঃ রাফসান আহমেদ",
+                birthRegNo: "20151234567890123",
+                dob: "2015-05-12",
+                gender: "ছাত্র",
+                religion: "ইসলাম",
+                bloodGroup: "A+",
+                fatherName: "মোঃ রফিকুল ইসলাম",
+                fatherPhone: "01711112233",
+                fatherNid: "1982123456789",
+                fatherOcc: "ব্যবসায়ী",
+                motherName: "মোছাঃ পারভীন আক্তার",
+                motherNid: "1985123456789",
+                targetClass: "৩য়",
+                group: "N/A",
+                quota: "সাধারণ",
+                prevSchool: "পানিপুর প্রাথমিক বিদ্যালয়",
+                prevResult: "GPA 5.00",
+                presentAddress: "হাটকালুপাড়া, পানিপুর",
+                paymentStatus: "পেইড",
+                trxId: "BK8893921",
+                photo: "https://via.placeholder.com/100?text=Photo"
+            },
+            {
+                roll: "20261002",
+                name: "আনিকা মেহজাবিন",
+                birthRegNo: "20101234567890456",
+                dob: "2010-08-20",
+                gender: "ছাত্রী",
+                religion: "ইসলাম",
+                bloodGroup: "B+",
+                fatherName: "আব্দুল করিম",
+                fatherPhone: "01822223344",
+                fatherNid: "1980123456789",
+                fatherOcc: "শিক্ষক",
+                motherName: "রেহানা পারভীন",
+                motherNid: "1983123456789",
+                targetClass: "৯ম",
+                group: "বিজ্ঞান",
+                quota: "মুক্তিযোদ্ধা কোটা",
+                prevSchool: "পানিপুর মডেল হাই স্কুল",
+                prevResult: "GPA 4.90",
+                presentAddress: "সেন্ট্রাল রোড, পানিপুর",
+                paymentStatus: "অপেক্ষমান",
+                trxId: "N/A",
+                photo: "https://via.placeholder.com/100?text=Photo"
+            }
+        ];
+
+        let examConfigs = {
+            "৩য়": "আসন: ১২০টি | পরীক্ষা: ২০ ডিসেম্বর ২০২৫, সকাল ১০:০০ টা",
+            "৬ষ্ঠ": "আসন: ১৬০টি | পরীক্ষা: ২১ ডিসেম্বর ২০২৫, সকাল ১০:০০ টা",
+            "৯ম": "আসন: ২০০টি | পরীক্ষা: ২২ ডিসেম্বর ২০২৫, সকাল ১০:০০ টা"
+        };
+
+        let committeeList = [
+            { name: "ড. এ. এইচ. এম. রেজাউল করিম", designation: "সভাপতি, ভর্তি কমিটি", phone: "০১৭০০-১১১২২২" },
+            { name: "মোহাম্মদ গোলাম মোস্তফা", designation: "সদস্য সচিব ও প্রধান শিক্ষক", phone: "০১৭০০-৩৩৩৪৪৪" }
+        ];
+
+        let adminAuth = { user: 'admin', pass: 'panipur2026' };
+
+        // DOM Loaded Handler
+        window.onload = function() {
+            // Restore persistent storage if available
+            const savedApplicants = localStorage.getItem('panipur_applicants');
+            if (savedApplicants) applicants = JSON.parse(savedApplicants);
+
+            const savedConfigs = localStorage.getItem('panipur_configs');
+            if (savedConfigs) examConfigs = JSON.parse(savedConfigs);
+
+            const savedCommittee = localStorage.getItem('panipur_committee');
+            if (savedCommittee) committeeList = JSON.parse(savedCommittee);
+
+            const savedAuth = localStorage.getItem('panipur_admin');
+            if (savedAuth) adminAuth = JSON.parse(savedAuth);
+
+            // Render Initial Data
+            renderNoticeConfigs();
+            renderCommittee();
+            loadBranding();
+        };
+
+        // Tab Switching Logic
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            const activeTab = document.getElementById('tab-' + tabId);
+            if (activeTab) activeTab.classList.remove('hidden');
+
+            if (tabId === 'admin' && document.getElementById('admin-dashboard').classList.contains('hidden') === false) {
+                loadAdminData();
+            }
+        }
+
+        // Show Toast Function
+        function showToast(msg, icon = 'fa-circle-check') {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').innerText = msg;
+            document.getElementById('toast-icon').className = `fa-solid ${icon} text-yellow-400 text-xl`;
+            toast.classList.remove('hidden');
+            setTimeout(() => { toast.classList.add('hidden'); }, 4000);
+        }
+
+        function closeToast() {
+            document.getElementById('toast').classList.add('hidden');
+        }
+
+        // Toggle Class 9 Group Selection
+        function toggleGroupSelection() {
+            const cls = document.getElementById('targetClass').value;
+            const groupContainer = document.getElementById('group-container');
+            if (cls === '৯ম') {
+                groupContainer.classList.remove('hidden');
+            } else {
+                groupContainer.classList.add('hidden');
+                document.getElementById('studentGroup').value = 'N/A';
+            }
+        }
+
+        // Handle Admission Form Submission
+        function handleAdmissionSubmit(e) {
+            e.preventDefault();
+
+            const fileInput = document.getElementById('photoInput');
+            let photoUrl = "https://via.placeholder.com/100?text=Student";
+
+            const processForm = (photoData) => {
+                const newRoll = "2026" + (applicants.length + 1001);
+                const newApplicant = {
+                    roll: newRoll,
+                    name: document.getElementById('studentName').value,
+                    birthRegNo: document.getElementById('birthRegNo').value,
+                    dob: document.getElementById('dob').value,
+                    gender: document.getElementById('gender').value,
+                    religion: document.getElementById('religion').value,
+                    bloodGroup: document.getElementById('bloodGroup').value,
+                    fatherName: document.getElementById('fatherName').value,
+                    fatherPhone: document.getElementById('fatherPhone').value,
+                    fatherNid: document.getElementById('fatherNid').value,
+                    fatherOcc: document.getElementById('fatherOcc').value,
+                    motherName: document.getElementById('motherName').value,
+                    motherNid: document.getElementById('motherNid').value,
+                    targetClass: document.getElementById('targetClass').value,
+                    group: document.getElementById('studentGroup').value || 'N/A',
+                    quota: document.getElementById('quota').value,
+                    prevSchool: document.getElementById('prevSchool').value,
+                    prevResult: document.getElementById('prevResult').value,
+                    presentAddress: document.getElementById('presentAddress').value,
+                    paymentStatus: "অপেক্ষমান",
+                    trxId: "N/A",
+                    photo: photoData
+                };
+
+                applicants.push(newApplicant);
+                localStorage.setItem('panipur_applicants', JSON.stringify(applicants));
+
+                document.getElementById('admission-form').reset();
+                showToast(`আবেদন সফল হয়েছে! আপনার রোল: ${newRoll}। অনুগ্রহ করে ফি পরিশোধ করুন।`);
+                
+                // Redirect to Payment Screen
+                document.getElementById('paySearchKey').value = newApplicant.fatherPhone;
+                switchTab('payment');
+            };
+
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(evt) { processForm(evt.target.result); };
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                processForm(photoUrl);
+            }
+        }
+
+        // Payment Processing
+        function handlePaymentSubmit(e) {
+            e.preventDefault();
+            const key = document.getElementById('paySearchKey').value.trim();
+            const trx = document.getElementById('payTrxId').value.trim();
+
+            const applicant = applicants.find(a => a.fatherPhone === key || a.roll === key || a.birthRegNo === key);
+
+            if (applicant) {
+                applicant.paymentStatus = "পেইড";
+                applicant.trxId = trx;
+                localStorage.setItem('panipur_applicants', JSON.stringify(applicants));
+                showToast("পেমেন্ট সফলভাবে স্টোর করা হয়েছে! এখন প্রবেশপত্র ডাউনলোড করতে পারবেন।");
+                
+                // Redirect to Admit Card
+                document.getElementById('admitQuery').value = applicant.roll;
+                switchTab('admit');
+            } else {
+                showToast("কোনো আবেদনকারী খুঁজে পাওয়া যায়নি! সঠিক তথ্য দিন।", 'fa-circle-xmark');
+            }
+        }
+
+        // Admit Card Search Logic
+        function searchAdmitCard(e) {
+            if(e) e.preventDefault();
+            const query = document.getElementById('admitQuery').value.trim();
+            const applicant = applicants.find(a => a.roll === query || a.fatherPhone === query || a.birthRegNo === query);
+
+            const resultBox = document.getElementById('admit-card-result');
+            const bodyBox = document.getElementById('admit-card-body');
+
+            if (!applicant) {
+                showToast("দুঃখিত, কোনো প্রবেশপত্র পাওয়া যায়নি!", 'fa-circle-xmark');
+                resultBox.classList.add('hidden');
+                return;
+            }
+
+            // Render Safe HTML String with Escaped Variables
+            bodyBox.innerHTML = `
+                <div class="flex flex-col sm:flex-row justify-between items-center bg-emerald-50 p-4 rounded-xl border border-emerald-200 gap-4">
+                    <div class="flex items-center gap-4">
+                        <img src="${applicant.photo}" class="w-20 h-24 object-cover rounded border border-gray-400 bg-white">
+                        <div>
+                            <h3 class="text-lg font-bold text-emerald-950">${applicant.name}</h3>
+                            <p class="text-xs text-gray-700">রোল নম্বর: <strong class="text-emerald-900 font-bold">${applicant.roll}</strong></p>
+                            <p class="text-xs text-gray-700">শ্রেণি: <strong>${applicant.targetClass}</strong> ${applicant.group !== 'N/A' ? '(' + applicant.group + ')' : ''}</p>
+                            <p class="text-xs text-gray-700">কোটা: ${applicant.quota}</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="px-3 py-1 text-xs font-bold rounded-full ${applicant.paymentStatus === 'পেইড' ? 'bg-green-200 text-green-900 border border-green-400' : 'bg-red-200 text-red-900'}">
+                            পেমেন্ট: ${applicant.paymentStatus}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2 text-xs border p-3 rounded-lg bg-gray-50">
+                    <p><strong>পিতার নাম:</strong> ${applicant.fatherName}</p>
+                    <p><strong>মাতার নাম:</strong> ${applicant.motherName}</p>
+                    <p><strong>জন্ম তারিখ:</strong> ${applicant.dob}</p>
+                    <p><strong>জন্ম নিবন্ধন:</strong> ${applicant.birthRegNo}</p>
+                    <p><strong>মোবাইল:</strong> ${applicant.fatherPhone}</p>
+                    <p><strong>TrxID:</strong> ${applicant.trxId}</p>
+                </div>
+
+                <div class="border p-3 rounded-lg bg-yellow-50 text-[11px] text-yellow-900">
+                    <p class="font-bold border-b border-yellow-200 pb-1 mb-1"><i class="fa-solid fa-triangle-exclamation"></i> পরীক্ষার্থীদের জন্য নির্দেশাবলী:</p>
+                    <ul class="list-disc list-inside space-y-0.5">
+                        <li>পরীক্ষা শুরুর অন্তত ৩০ মিনিট পূর্বে কেন্দ্রে উপস্থিত হতে হবে।</li>
+                        <li>প্রবেশপত্রটি অবশ্যই সঙ্গে নিয়ে আসতে হবে।</li>
+                        <li>কোনো প্রকার ইলেকট্রনিক ডিভাইস সঙ্গে আনা সম্পূর্ণ নিষিদ্ধ।</li>
+                    </ul>
+                </div>
+            `;
+
+            resultBox.classList.remove('hidden');
+        }
+
+        // Render Notice Configs
+        function renderNoticeConfigs() {
+            const container = document.getElementById('notice-configs-display');
+            let html = '';
+            for (let cls in examConfigs) {
+                html += `
+                    <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-100 flex justify-between items-center">
+                        <span class="font-bold text-emerald-900 text-sm">${cls} শ্রেণি</span>
+                        <span class="text-xs text-emerald-800">${examConfigs[cls]}</span>
+                    </div>
+                `;
+            }
+            container.innerHTML = html;
+
+            // Admin Inputs set
+            if(document.getElementById('cfg-3')) {
+                document.getElementById('cfg-3').value = examConfigs['৩য়'];
+                document.getElementById('cfg-6').value = examConfigs['৬ষ্ঠ'];
+                document.getElementById('cfg-9').value = examConfigs['৯ম'];
+            }
+        }
+
+        // Render Committee Display
+        function renderCommittee() {
+            const container = document.getElementById('committee-cards-display');
+            const adminContainer = document.getElementById('admin-committee-list');
+            
+            if (committeeList.length === 0) {
+                container.innerHTML = '<p class="text-xs text-gray-500">কোনো তথ্য নেই</p>';
+                if (adminContainer) adminContainer.innerHTML = '';
+                return;
+            }
+
+            container.innerHTML = committeeList.map(c => `
+                <div class="p-3 bg-gray-50 rounded-xl border border-gray-200">
+                    <h4 class="font-bold text-sm text-gray-800">${c.name}</h4>
+                    <p class="text-xs text-gray-600">${c.designation}</p>
+                    <p class="text-xs text-emerald-700 font-medium"><i class="fa-solid fa-phone mr-1"></i>${c.phone}</p>
+                </div>
+            `).join('');
+
+            if (adminContainer) {
+                adminContainer.innerHTML = committeeList.map((c, i) => `
+                    <div class="flex justify-between items-center text-xs p-2 border rounded bg-gray-50">
+                        <span><strong>${c.name}</strong> (${c.designation})</span>
+                        <button onclick="removeCommittee(${i})" class="text-red-600 font-bold hover:underline">মুছুন</button>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // Admin Auth Login
+        function handleAdminLogin(e) {
+            e.preventDefault();
+            const u = document.getElementById('adminUser').value;
+            const p = document.getElementById('adminPass').value;
+
+            if (u === adminAuth.user && p === adminAuth.pass) {
+                document.getElementById('admin-login-box').classList.add('hidden');
+                document.getElementById('admin-dashboard').classList.remove('hidden');
+                loadAdminData();
+                showToast("এডমিন লগইন সফল হয়েছে!");
+            } else {
+                showToast("ভুল পাসওয়ার্ড বা আইডি!", 'fa-circle-xmark');
+            }
+        }
+
+        function adminLogout() {
+            document.getElementById('admin-dashboard').classList.add('hidden');
+            document.getElementById('admin-login-box').classList.remove('hidden');
+        }
+
+        function toggleForgotBox() {
+            document.getElementById('forgot-password-box').classList.toggle('hidden');
+        }
+
+        function recoverPassword() {
+            const pin = document.getElementById('recovery-input').value.trim();
+            if (pin === 'panipur2026' || pin === 'admin123') {
+                adminAuth.user = 'admin';
+                adminAuth.pass = 'admin123';
+                localStorage.setItem('panipur_admin', JSON.stringify(adminAuth));
+                showToast('পাসওয়ার্ড রিসেট হয়েছে! নতুন ইউজার আইডি: admin, পাসওয়ার্ড: admin123');
+                document.getElementById('adminUser').value = 'admin';
+                document.getElementById('adminPass').value = 'admin123';
+                document.getElementById('forgot-password-box').classList.add('hidden');
+            } else {
+                showToast('ভুল সিক্রেট পিন!', 'fa-circle-xmark');
+            }
+        }
+
+        // Load & Filter Applicants for Admin
+        function loadAdminData() {
+            // Stats
+            document.getElementById('stat-total').innerText = applicants.length;
+            document.getElementById('stat-3').innerText = applicants.filter(a => a.targetClass === '৩য়').length;
+            document.getElementById('stat-6').innerText = applicants.filter(a => a.targetClass === '৬ষ্ঠ').length;
+            document.getElementById('stat-9').innerText = applicants.filter(a => a.targetClass === '৯ম').length;
+
+            filterApplicants();
+        }
+
+        function filterApplicants() {
+            const selectedClass = document.getElementById('filter-class').value;
+            const selectedGroup = document.getElementById('filter-group').value;
+
+            let filtered = applicants;
+
+            if (selectedClass !== 'All') {
+                filtered = filtered.filter(a => a.targetClass === selectedClass);
+            }
+
+            if (selectedGroup !== 'All') {
+                filtered = filtered.filter(a => a.targetClass === '৯ম' && a.group === selectedGroup);
+            }
+
+            const body = document.getElementById('applicant-table-body');
+            if (filtered.length === 0) {
+                body.innerHTML = '<tr><td colspan="6" class="p-4 text-center text-gray-500">কোনো আবেদনকারী তথ্য পাওয়া যায়নি।</td></tr>';
+                return;
+            }
+
+            body.innerHTML = filtered.map((a) => {
+                const originalIndex = applicants.findIndex(item => item.roll === a.roll);
+                return `
+                    <tr class="hover:bg-gray-50 border-b">
+                        <td class="p-3 font-bold text-emerald-900">${a.roll}</td>
+                        <td class="p-3 font-semibold">${a.name}</td>
+                        <td class="p-3">${a.targetClass} ${a.group !== 'N/A' ? ' (' + a.group + ')' : ''}</td>
+                        <td class="p-3">${a.fatherName}<br><span class="text-[10px] text-gray-500">${a.fatherPhone}</span></td>
+                        <td class="p-3">
+                            <span class="px-2 py-0.5 text-[10px] rounded-full font-bold ${a.paymentStatus === 'পেইড' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}">
+                                ${a.paymentStatus}
+                            </span>
+                        </td>
+                        <td class="p-3 text-center">
+                            <button onclick="viewApplicantDetails(${originalIndex})" class="bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded text-[10px] font-bold">বিস্তারিত</button>
+                            <button onclick="deleteApplicant(${originalIndex})" class="bg-red-600 hover:bg-red-700 text-white px-2 py-1 rounded text-[10px] font-bold ml-1"><i class="fa-solid fa-trash"></i></button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // View Modal Details
+        function viewApplicantDetails(index) {
+            const student = applicants[index];
+            if (!student) return;
+
+            const modalContent = document.getElementById('modal-content-area');
+            modalContent.innerHTML = `
+                <div class="text-center border-b pb-3">
+                    <img src="${student.photo}" class="w-20 h-20 rounded-full mx-auto object-cover border-2 border-emerald-600 mb-2">
+                    <h3 class="text-lg font-bold text-emerald-900">${student.name}</h3>
+                    <p class="text-xs text-gray-600">রোল: <strong>${student.roll}</strong> | শ্রেণি: <strong>${student.targetClass}</strong> ${student.group !== 'N/A' ? '(' + student.group + ')' : ''}</p>
+                </div>
+                <div class="grid grid-cols-2 gap-2 text-xs text-gray-700 pt-2">
+                    <p><strong>জন্ম নিবন্ধন:</strong> ${student.birthRegNo}</p>
+                    <p><strong>জন্ম তারিখ:</strong> ${student.dob}</p>
+                    <p><strong>ধর্ম ও লিঙ্গ:</strong> ${student.religion} (${student.gender})</p>
+                    <p><strong>পিতার নাম:</strong> ${student.fatherName}</p>
+                    <p><strong>পিতার এনআইডি:</strong> ${student.fatherNid}</p>
+                    <p><strong>পিতার মোবাইল:</strong> ${student.fatherPhone}</p>
+                    <p><strong>মাতার নাম:</strong> ${student.motherName} (NID: ${student.motherNid})</p>
+                    <p><strong>কোটা:</strong> ${student.quota}</p>
+                    <p class="col-span-2"><strong>বর্তমান ঠিকানা:</strong> ${student.presentAddress}</p>
+                    <p><strong>পূর্ববর্তী স্কুল:</strong> ${student.prevSchool} (${student.prevResult})</p>
+                    <p><strong>পেমেন্ট:</strong> <span class="font-bold text-emerald-700">${student.paymentStatus}</span> (TrxID: ${student.trxId})</p>
+                </div>
+                <div class="pt-3 border-t text-center no-print">
+                    <button onclick="printFromModal('${student.roll}')" class="bg-emerald-800 text-white px-4 py-2 rounded-lg text-xs font-bold">প্রবেশপত্র খুলুন</button>
+                </div>
+            `;
+
+            document.getElementById('student-modal').classList.remove('hidden');
+        }
+
+        function closeStudentModal() {
+            document.getElementById('student-modal').classList.add('hidden');
+        }
+
+        function printFromModal(roll) {
+            closeStudentModal();
+            document.getElementById('admitQuery').value = roll;
+            switchTab('admit');
+            searchAdmitCard();
+        }
+
+        function deleteApplicant(index) {
+            if (confirm("আপনি কি সত্যিই এই আবেদনকারীর তথ্য মুছে ফেলতে চান?")) {
+                applicants.splice(index, 1);
+                localStorage.setItem('panipur_applicants', JSON.stringify(applicants));
+                loadAdminData();
+                showToast("আবেদন তথ্য মুছে ফেলা হয়েছে!");
+            }
+        }
+
+        // Export Data to CSV / Excel
+        function exportToExcel() {
+            if (applicants.length === 0) {
+                showToast("কোনো ডাটা নেই!", 'fa-circle-xmark');
+                return;
+            }
+            let csv = "\uFEFFরোল,নাম,শ্রেণি,বিভাগ,জন্ম নিবন্ধন,পিতার নাম,পিতার এনআইডি,মোবাইল,কোটা,পেমেন্ট স্ট্যাটাস\n";
+            applicants.forEach(a => {
+                csv += `"${a.roll}","${a.name}","${a.targetClass}","${a.group}","${a.birthRegNo}","${a.fatherName}","${a.fatherNid}","${a.fatherPhone}","${a.quota}","${a.paymentStatus}"\n`;
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.setAttribute("download", "Full_Admission_Applicants_Report.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Config Save Logic
+        function saveConfigs(e) {
+            e.preventDefault();
+            examConfigs['৩য়'] = document.getElementById('cfg-3').value || examConfigs['৩য়'];
+            examConfigs['৬ষ্ঠ'] = document.getElementById('cfg-6').value || examConfigs['৬ষ্ঠ'];
+            examConfigs['৯ম'] = document.getElementById('cfg-9').value || examConfigs['৯ম'];
+
+            localStorage.setItem('panipur_configs', JSON.stringify(examConfigs));
+            renderNoticeConfigs();
+            showToast("কনফিগারেশন আপডেট হয়েছে!");
+        }
+
+        function addCommitteeMember(e) {
+            e.preventDefault();
+            committeeList.push({
+                name: document.getElementById('cm-name').value,
+                designation: document.getElementById('cm-designation').value,
+                phone: document.getElementById('cm-phone').value
+            });
+            localStorage.setItem('panipur_committee', JSON.stringify(committeeList));
+            document.getElementById('cm-name').value = '';
+            document.getElementById('cm-designation').value = '';
+            document.getElementById('cm-phone').value = '';
+            renderCommittee();
+            showToast("নতুন কমিটি সদস্য যুক্ত হয়েছে!");
+        }
+
+        function removeCommittee(index) {
+            committeeList.splice(index, 1);
+            localStorage.setItem('panipur_committee', JSON.stringify(committeeList));
+            renderCommittee();
+            showToast("কমিটি সদস্য সরানো হয়েছে!");
+        }
+
+        // File/Branding Upload Handling
+        function uploadFile(e, key) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    localStorage.setItem(key, evt.target.result);
+                    loadBranding();
+                    showToast("আপলোড হয়েছে!");
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function loadBranding() {
+            const logo = localStorage.getItem('panipur_logo');
+            if (logo) {
+                document.getElementById('site-logo').src = logo;
+                document.getElementById('admit-logo').src = logo;
+                document.getElementById('admit-bg-logo').src = logo;
+            }
+            const sig = localStorage.getItem('panipur_signature');
+            if (sig) {
+                document.getElementById('admit-headmaster-sig').src = sig;
+            }
+        }
+    </script>
+</body>
+</html>
